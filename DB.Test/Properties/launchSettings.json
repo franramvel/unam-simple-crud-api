@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DB.Test": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "CONNECTION_STRING": "Data Source=localhost;Initial Catalog=Empleados;Integrated Security=True;TrustServerCertificate=True;"
+      }
+    }
+  }
+}

@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 string MyCors = "MyCors";
 // Add services to the container.
 var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+var cnx = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -30,7 +31,7 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddDbContext<MainDbContext>(cfg =>
-cfg.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"), providerOptions =>
+cfg.UseSqlServer(cnx, providerOptions =>
 {
     providerOptions.CommandTimeout(180);
 })

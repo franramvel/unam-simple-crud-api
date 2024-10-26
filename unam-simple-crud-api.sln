@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiltersAttributesAndMiddleware", "FiltersAttributesAndMiddleware\FiltersAttributesAndMiddleware.csproj", "{4D2B9D3D-E1F5-4DE0-B08A-8F6B7D104A48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Test", "DB.Test\DB.Test.csproj", "{523423CF-0F45-4B43-834A-886B1E77364D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4D2B9D3D-E1F5-4DE0-B08A-8F6B7D104A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D2B9D3D-E1F5-4DE0-B08A-8F6B7D104A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D2B9D3D-E1F5-4DE0-B08A-8F6B7D104A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523423CF-0F45-4B43-834A-886B1E77364D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523423CF-0F45-4B43-834A-886B1E77364D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523423CF-0F45-4B43-834A-886B1E77364D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523423CF-0F45-4B43-834A-886B1E77364D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
