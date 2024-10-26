@@ -1,7 +1,7 @@
 ﻿using DB.Context;
 using DB.Query.Interfaces;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 using Model.DB.Responses;
 using System.Linq.Dynamic.Core;
 
@@ -18,10 +18,12 @@ namespace DB.Query
     {
 
         private readonly MainDbContext _ctx;
+        private readonly ILogger<EmpleadoQueryHandler> _logger;
 
-        public EmpleadoQueryHandler(MainDbContext ctx)
+        public EmpleadoQueryHandler(MainDbContext ctx, ILogger<EmpleadoQueryHandler> logger)
         {
             _ctx = ctx;
+            _logger = logger;
         }
 
 
