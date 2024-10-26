@@ -31,7 +31,7 @@ namespace ParrillaReportes.Controllers
             switch (result.HttpCode) 
             {
                 case 200:
-                    return Ok(result);
+                    return Json(result.Data);
                 case 404:
                     return NotFound(result.Message);
                 default:
@@ -50,7 +50,7 @@ namespace ParrillaReportes.Controllers
             switch (result.HttpCode)
             {
                 case 200:
-                    return Ok(result);
+                    return Json(result.Data);
                 case 409:
                     return Conflict(result.Message);
                 default:
@@ -62,12 +62,11 @@ namespace ParrillaReportes.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Empleado model)
         {
-            var mapperInstance = _mapper.Map<Empleado>(model);
-            var result = await _empleadoServices.UpdateAsync(mapperInstance);
+            var result = await _empleadoServices.UpdateAsync(model);
             switch (result.HttpCode)
             {
                 case 200:
-                    return Ok(result);
+                    return Json(result.Data);
                 case 404:
                     return NotFound(result.Message);
                 case 409:
