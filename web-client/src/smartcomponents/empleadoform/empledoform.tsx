@@ -11,7 +11,8 @@ import EmpleadoFormModel from "./empleadoformmodel";
 export interface EmpleadoFormProps{
     model:EmpleadoFormModel
     onInsert: (model:EmpleadoFormModel) => void;
-    onUpdate?: (model:EmpleadoFormModel) => void;
+    onUpdate: (model:EmpleadoFormModel) => void;
+    onDelete: (id:number) => void;
 }
 
 export default function EmpleadoForm(formProps:EmpleadoFormProps) {
@@ -34,6 +35,9 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
             formProps.onInsert(data);
           } else if (clickedButton === "update") {
             formProps.onUpdate!(data);
+          }
+          else if (clickedButton === "delete") {
+            formProps.onDelete(data.id);
           }
     };
 
@@ -176,12 +180,26 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                 disabled={!isValid}
                 variant="contained" 
                 color='primary'>Crear</Button>
-                : <Button 
-                onClick={() => setClickedButton("update")}
-                disabled={!isValid}
-                type="submit"  
-                variant="contained" 
-                color='primary'>Actualizar</Button>}
+                : (
+                    <>
+                      <Button 
+                      onClick={() => setClickedButton("update")}
+                      disabled={!isValid}
+                      type="submit"  
+                      variant="contained" 
+                      color='primary'>Actualizar
+                      </Button>
+                      <Button 
+                      onClick={() => setClickedButton("delete")}
+                      disabled={!isValid}
+                      type="submit"  
+                      variant="contained" 
+                      color='error'>Eliminar
+                      </Button>
+                    </>
+
+                
+                )}
 
             </div>
           </CardActions>

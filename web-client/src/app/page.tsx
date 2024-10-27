@@ -13,13 +13,18 @@ import EmpleadoSearchFormModel from "@/smartcomponents/searchform/empleadosearch
 
 export default function Home() {
 
-  const [value, setValue] = React.useState(0);
+  
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+
 
   const {
+    handleGet,
+    handleInsert,
+    handleUpdate,
+    handleDelete,
+    handleChangeTabValue,
+    tabValue,
+    model
   } = useIndex();
 
 
@@ -29,21 +34,21 @@ export default function Home() {
     <Card>
       <Box>
         <Tabs
-        value={value}
-        onChange={handleChange}
+        value={tabValue}
+        onChange={handleChangeTabValue}
         textColor="primary"
         indicatorColor="primary"
         aria-label="primary tabs example"
         >
         <Tab value={0} label="Buscar" />
-        <Tab value={1} label="Crear" />
+        <Tab value={1} label="Crear/Modificar" />
       </Tabs>
       </Box>
-      <TabPanel value={value} index={0} >
-        <EmpleadoSearchForm model={new EmpleadoSearchFormModel} onSubmit={()=>[]}/>
+      <TabPanel value={tabValue} index={0} >
+        <EmpleadoSearchForm model={new EmpleadoSearchFormModel} onSubmit={handleGet}/>
       </TabPanel>
-      <TabPanel value={value} index={1} >
-        <EmpleadoForm model={new EmpleadoFormModel} onInsert={()=>[]}/>
+      <TabPanel value={tabValue} index={1} >
+        <EmpleadoForm model={model} onInsert={handleInsert} onUpdate={handleUpdate} onDelete={handleDelete}/>
       </TabPanel> 
     </Card>
 
