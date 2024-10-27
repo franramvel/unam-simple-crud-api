@@ -6,6 +6,8 @@ import useIndex from "./useindex";
 import TabPanel from "@/components/tabpanel/tabpanel";
 import EmpleadoFormModel from "@/smartcomponents/empleadoform/empleadoformmodel";
 import EmpleadoForm from "@/smartcomponents/empleadoform/empledoform";
+import EmpleadoSearchForm from "@/smartcomponents/searchform/empledosearchform";
+import EmpleadoSearchFormModel from "@/smartcomponents/searchform/empleadosearchformmodel";
 
 // Font files can be colocated inside of `pages`
 
@@ -38,7 +40,7 @@ export default function Home() {
       </Tabs>
       </Box>
       <TabPanel value={value} index={0} >
-        Item One
+        <EmpleadoSearchForm model={new EmpleadoSearchFormModel} onSubmit={()=>[]}/>
       </TabPanel>
       <TabPanel value={value} index={1} >
         <EmpleadoForm model={new EmpleadoFormModel} onInsert={()=>[]}/>

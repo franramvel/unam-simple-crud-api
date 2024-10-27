@@ -5,7 +5,7 @@ import { Box, Button, Card, CardActions, CardContent, FormControl, FormLabel, Me
 import { Controller, useForm } from "react-hook-form";
 
 import styled from "@emotion/styled";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import EmpleadoFormModel from "./empleadoformmodel";
 
 export interface EmpleadoFormProps{
@@ -28,7 +28,6 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
     const [clickedButton, setClickedButton] = useState<string | null>(null);
     const { isDirty, isValid,errors,touchedFields,dirtyFields} = formState;
   
-    const formularioRef = useRef<HTMLFormElement | null>(null);
 
     const handleFormSubmit = (data:EmpleadoFormModel) => {
         if (clickedButton === "insert") {
@@ -38,12 +37,44 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
           }
     };
 
-
+    const dynamicComponent = useMemo(() => {
     
+        if(formProps.model.id==0){
+          return (
+            null
+          )
+        }else{
+          return <FormControl component="fieldset">
+          <Controller
+              name={"id"}
+              control={control}
+              rules={{ 
+                  required: 'Campo Requerido',
+                  validate: {
+                      matchPattern: (v) => //match pattern indica que necesitamos que el campo cumpla el patron
+                        /^\d+$/.test(v.toString()) || //Este es un regex, que valida que metan un correo valido y luego usa el metodo .test, donde v es el valor de entrada del input
+                        "Ingrese un número válido", //Lo que dice es que en caso de que el testeo salga verdadero, entonces deja pasar, si no, muestra el error de introduce un correo valido
+                    },
+                    
+               }}
+              render={({ field }) => {
+              return (
+                  <TextField 
+                  {...field}
+                  helperText={formState.errors.id?.message}
+                  label="Id" 
+                  variant="outlined" 
+                  InputProps={{
+                      readOnly: true,
+                  }}
+                      />
+              );
+              }}
+          />
+      </FormControl>
+        }
+      }, [formProps.model.id])
 
-    const determinaValidez = (fieldName: keyof EmpleadoFormModel) => {
-      return formState.errors[fieldName] ? 2 : (formState.dirtyFields[fieldName] ? (formState.touchedFields[fieldName] ? 1 : 0) : 0)
-    }
 
 
     return (
@@ -56,6 +87,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
       >
         <Card >
           <CardContent className="form-container" >
+            {dynamicComponent}
 
             <FormControl component="fieldset">
                 <Controller
@@ -141,10 +173,15 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                 {formProps.model.id == 0 ?
                 <Button type="submit"  
                 onClick={() => setClickedButton("insert")}
-                variant="contained" color='primary'>Crear</Button>
+                disabled={!isValid}
+                variant="contained" 
+                color='primary'>Crear</Button>
                 : <Button 
                 onClick={() => setClickedButton("update")}
-                type="submit"  variant="contained" color='primary'>Actualizar</Button>}
+                disabled={!isValid}
+                type="submit"  
+                variant="contained" 
+                color='primary'>Actualizar</Button>}
 
             </div>
           </CardActions>
