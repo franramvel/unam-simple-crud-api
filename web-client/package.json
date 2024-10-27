@@ -11,8 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "ts-lint": "npx tsc --noEmit --incremental --watch",
-    "ts-lint-commit-hook": "npx tsc --noEmit --incremental",
-    "prepare": "husky install"
+    "ts-lint-commit-hook": "npx tsc --noEmit --incremental"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -48,9 +47,5 @@
     "styled-components": "^5.3.11",
     "supports-color": "^9.4.0",
     "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "@types/react-google-recaptcha": "^2.1.7",
-    "husky": "^8.0.0"
   }
 }

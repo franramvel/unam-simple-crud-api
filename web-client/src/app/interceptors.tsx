@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from './services/storageservice';
+import { API_URL } from './global';
 
 // Configura la instancia de Axios con una URL base y otros ajustes si es necesario
 export const axiosReaderInstance = axios.create({

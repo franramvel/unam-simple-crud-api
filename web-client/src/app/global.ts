@@ -10,9 +10,9 @@ interface Enviroments {
 
 const config: Enviroments = {
   local: {
-    API_URL: 'https://localhost:7040/',
+    API_URL: 'https://localhost:7023/',
   },
 };
 const env = process.env.APP_ENV;
 
-export const API_READER_URL= config[env as keyof Enviroments].API_URL
+export const API_URL= config[env as keyof Enviroments].API_URL

@@ -1,28 +1,21 @@
 "use client";
-import styles from "./page.module.scss";
-import NavMenu from "@/components/navmenu/navmenu";
-import Footer from "@/components/footer/footer";
-import { AMBlueCard, AMLinkButton, AMMainCard, AMMainCleanCard, AMPrimaryRedButton, AMSecondaryButton, AMTextField } from "@/components/styledcomponents";
-import { Typography, Card, IconButton, Dialog, DialogTitle, DialogContent } from "@mui/material";
-import React, { useMemo } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-import { neueHaasUnicaProBold } from "./fonts";
-import useIndex, { TIPOS_FORMULARIOS_LOGIN } from "./useindex";
-import LoginForm from "@/smartcomponents/forms/loginform/loginform";
-import RegistroFormDialog from "@/smartcomponents/dialogs/formdialogs/registroformdialog/registroformdialog";
-import PasswordFormDialog from "@/smartcomponents/dialogs/formdialogs/passwordformdialog/passwordformdialog";
-import ConfirmationFormDialog from "@/smartcomponents/dialogs/formdialogs/confirmationformdialog/confirmationformdialog";
-import { SITE_KEY } from "./global";
+import { Typography, Card, IconButton, Dialog, DialogTitle, DialogContent, Tabs, Tab, Box } from "@mui/material";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import Loading from "./loading";
-import SuccessDialog from "@/smartcomponents/successdialog/successdialog";
-import ErrorDialog from "@/smartcomponents/errordialog/errordialog";
-import WarningDialog from "@/smartcomponents/warningdialog/warningdialog";
-import InfoDialog from "@/smartcomponents/infodialog/infodialog";
+import useIndex from "./useindex";
+import TabPanel from "@/components/tabpanel/tabpanel";
+import EmpleadoFormModel from "@/smartcomponents/empleadoform/empleadoformmodel";
+import EmpleadoForm from "@/smartcomponents/empleadoform/empledoform";
+
 // Font files can be colocated inside of `pages`
 
 export default function Home() {
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
   const {
   } = useIndex();
@@ -31,8 +24,28 @@ export default function Home() {
 
   return (
     <>
-    
+    <Card>
+      <Box>
+        <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="primary"
+        indicatorColor="primary"
+        aria-label="primary tabs example"
+        >
+        <Tab value={0} label="Buscar" />
+        <Tab value={1} label="Crear" />
+      </Tabs>
+      </Box>
+      <TabPanel value={value} index={0} >
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1} >
+        <EmpleadoForm model={new EmpleadoFormModel} onInsert={()=>[]}/>
+      </TabPanel> 
+    </Card>
 
     </>
   );
 }
+

@@ -1,18 +1,11 @@
 'use client'
 import './globals.scss'
 import { Inter } from 'next/font/google'
-import Menu from '../components/navmenu/navmenu'
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { theme } from './theme'
-import NavMenu from '../components/navmenu/navmenu'
-import { neueHaasUnicaProRegular } from './fonts'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import 'dayjs/locale/es-mx';
-import { UserContextProvider } from './context/usercontext/usercontextprovider'
 import { Suspense } from 'react'
-import MuiXLicense from '@/smartcomponents/muilicense/MuiXLicense'
-import { PageContextProvider } from './context/pagecontext/pagecontextprovider'
 
 
 const metadata = {
@@ -32,7 +25,7 @@ export default function RootLayout({
       </head>
 
         <CssBaseline />
-        <body className={`${neueHaasUnicaProRegular.className}`}>
+        <body >
         <LocalizationProvider dateAdapter={AdapterDayjs}  adapterLocale="es-mx">
         {children}
 
