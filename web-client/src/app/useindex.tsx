@@ -1,3 +1,4 @@
+"use client";
 import { use, useContext, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -43,8 +44,7 @@ export default function useIndex() {
   const handleInsert = (model: EmpleadoFormModel) => {
     const onSuccess = async (response:EmpleadoFormModel) => {
       alert("Empleado creado correctamente")
-      setModel(new EmpleadoFormModel)
-      setTabValue(0)
+      setModel(response)
       console.log(response)
     };
 

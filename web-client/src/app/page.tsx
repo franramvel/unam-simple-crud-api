@@ -40,8 +40,8 @@ export default function Home() {
         indicatorColor="primary"
         aria-label="primary tabs example"
         >
-        <Tab value={0} label="Buscar" />
-        <Tab value={1} label="Crear/Modificar" />
+        <Tab value={0} label="Buscar" id="tab_search" />
+        <Tab value={1} label="Crear/Modificar" id="tab_interact"/>
       </Tabs>
       </Box>
       <TabPanel value={tabValue} index={0} >

@@ -1,4 +1,4 @@
-
+"use client";
 import { DatePicker } from "@mui/x-date-pickers";
 import styles from "./loginform.module.scss";
 import { Box, Button, Card, CardActions, CardContent, FormControl, FormLabel, MenuItem, TextField,Select, outlinedInputClasses } from "@mui/material";
@@ -19,7 +19,7 @@ export default function EmpleadoSearchForm(formProps:EmpleadoSearchFormProps) {
   //con ese objeto, ya podemos manejar los request a donde queramos
     const { handleSubmit, control, reset,formState,trigger,setValue} = useForm({
       mode: "onChange",
-      defaultValues:  {} as EmpleadoSearchFormModel,
+      defaultValues:  {id:0} as EmpleadoSearchFormModel,
       values: formProps.model,
       resetOptions: { keepDefaultValues: true }, //Mantiene como default los valores que declaramos arriba, si no, toma los que se le mandan del props
     });
@@ -64,6 +64,7 @@ export default function EmpleadoSearchForm(formProps:EmpleadoSearchFormProps) {
                     render={({ field }) => {
                     return (
                         <TextField 
+                        id="inp_id"
                         {...field}
                         helperText={formState.errors.id?.message}
                         label="Id" 
@@ -79,7 +80,9 @@ export default function EmpleadoSearchForm(formProps:EmpleadoSearchFormProps) {
           </CardContent>
           <CardActions>
             <div className="form-actions-container_dt">
-            <Button type="submit"  
+            <Button 
+                id="btn_search"
+                type="submit"  
                 disabled={!isValid}
                 variant="contained" 
                 color='primary'>Buscar</Button>

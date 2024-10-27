@@ -1,4 +1,4 @@
-
+"use client";
 import { DatePicker } from "@mui/x-date-pickers";
 import styles from "./loginform.module.scss";
 import { Box, Button, Card, CardActions, CardContent, FormControl, FormLabel, MenuItem, TextField,Select, outlinedInputClasses } from "@mui/material";
@@ -21,7 +21,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
   //con ese objeto, ya podemos manejar los request a donde queramos
     const { handleSubmit, control, reset,formState,trigger,setValue} = useForm({
       mode: "onChange",
-      defaultValues:  {email:"",telefono:"",direccion:""} as EmpleadoFormModel,
+      defaultValues:  {id:0,email:"",telefono:"",direccion:""} as EmpleadoFormModel,
       values: formProps.model,
       resetOptions: { keepDefaultValues: true }, //Mantiene como default los valores que declaramos arriba, si no, toma los que se le mandan del props
     });
@@ -64,6 +64,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
               render={({ field }) => {
               return (
                   <TextField 
+                  id="inp_id"
                   {...field}
                   helperText={formState.errors.id?.message}
                   label="Id" 
@@ -108,6 +109,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                     render={({ field }) => {
                     return (
                         <TextField 
+                        id="inp_direccion"
                         {...field}
                         label="Direccion" 
                         variant="outlined" 
@@ -135,6 +137,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                         <TextField 
                         {...field}
                         label="Email" 
+                        id="inp_email"
                         variant="outlined" 
                         helperText={formState.errors.email?.message}
                             />
@@ -162,6 +165,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                         {...field}
                         helperText={formState.errors.telefono?.message}
                         label="Telefono" 
+                        id="inp_telefono"
                         variant="outlined" 
                             />
                     );
@@ -176,6 +180,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
             <div className="form-actions-container_dt">
                 {formProps.model.id == 0 ?
                 <Button type="submit"  
+                id="btn_insert"
                 onClick={() => setClickedButton("insert")}
                 disabled={!isValid}
                 variant="contained" 
@@ -183,6 +188,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                 : (
                     <>
                       <Button 
+                      id="btn_update"
                       onClick={() => setClickedButton("update")}
                       disabled={!isValid}
                       type="submit"  
@@ -190,6 +196,7 @@ export default function EmpleadoForm(formProps:EmpleadoFormProps) {
                       color='primary'>Actualizar
                       </Button>
                       <Button 
+                      id="btn_delete"
                       onClick={() => setClickedButton("delete")}
                       disabled={!isValid}
                       type="submit"  
